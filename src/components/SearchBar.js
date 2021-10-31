@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import SearchBar from "material-ui-search-bar";
 
-function Search(props) {
+function SearchBar(props) {
   const { query, updateQuery } = props;
 
   return (

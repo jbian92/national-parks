@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router";
 import Container from "@material-ui/core/Container";
+import Search from "./pages/Search";
+import NotFound from "./pages/NotFound";
 
 class App extends Component {
   constructor(props) {
@@ -20,9 +22,10 @@ class App extends Component {
     return (
       <Container>
         <Switch>
-          <Route>
-            
+          <Route exact path="/">
+            <Search query={this.state.query} updateQuery={this.updateQuery} />
           </Route>
+          <Route component={NotFound} />
         </Switch>
       </Container>
     );
