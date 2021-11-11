@@ -1,4 +1,4 @@
-import { Box, Image, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 
 function SearchItem(props) {
   const { park } = props;

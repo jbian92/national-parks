@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchBar from "material-ui-search-bar";
-import { Grid } from "@chakra-ui/react";
+import { Grid, Box } from "@chakra-ui/react";
 import SearchItem from "../components/SearchItem";
 import PropTypes from "prop-types";
 import * as API from "../services/api";
@@ -32,18 +32,20 @@ class Search extends Component {
   render() {
     return (
       <>
-        <SearchBar 
-          value={this.props.query}
-          onChange={(newValue) => this.updateParks(newValue)}
-          onCancelSearch={() => this.updateQuery("")}
-        />
+        <Box p={3}>
+          <SearchBar
+            value={this.props.query}
+            onChange={(newValue) => this.updateParks(newValue)}
+            onCancelSearch={() => this.updateQuery("")}
+          />
+        </Box>
         <Grid
           container
           direction="row"
           justifyContent="center"
           alignItems="center"
         >
-          <Grid templateColumns="repeat(2, 1fr)" gap={6} mb={5} py={3}>
+          <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={5} py={3}>
             {this.state.parks.map((park, index) => (
               <SearchItem park={park} key={index} />
             ))}
@@ -58,6 +60,5 @@ export default Search;
 
 Search.propTypes = {
   query: PropTypes.string.isRequired,
-  updateQuery: PropTypes.func.isRequired,
-  parks: PropTypes.array.isRequired
+  updateQuery: PropTypes.func.isRequired
 };
