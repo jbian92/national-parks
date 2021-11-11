@@ -1,4 +1,5 @@
 import { Box, Button, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function SearchItem(props) {
   const { park } = props;
@@ -18,7 +19,9 @@ function SearchItem(props) {
         </Text>
       </Box>
       <Box m="2">
-        <Button colorScheme="teal" variant="outline">More Info</Button>
+        <Link to={`/${park.parkCode}`}>
+          <Button colorScheme="teal" variant="outline">More Info</Button>
+        </Link>
       </Box>
     </Box>
   );

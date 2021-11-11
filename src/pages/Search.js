@@ -40,7 +40,6 @@ class Search extends Component {
           />
         </Box>
         <Grid
-          container
           direction="row"
           justifyContent="center"
           alignItems="center"

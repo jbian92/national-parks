@@ -19,4 +19,13 @@ async function getParks(query) {
   }
 }
 
-export { getParks };
+async function getParkInfo(code) {
+  try {
+    const response = await axios.get(`${baseURL}/parks?parkCode=${code}&api_key=${apiKey}`);
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export { getParks, getParkInfo };
