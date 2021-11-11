@@ -1,35 +1,30 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router";
 import Container from "@material-ui/core/Container";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
+import * as API from "./services/api";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: ""
-    };
-  }
+function App() {
+  const[query, setQuery] = useState("");
+  const[parks, setParks] = useState([]);
 
-  updateQuery = (newQuery) => {
-    this.setState({
-      query: newQuery
-    });
-  }
+  useEffect(() => {
+    API.getParks(query)
+      .then((parks) => setParks(parks))
+      .catch((err) => console.log(err));
+  }, [query]);
 
-  render() {
-    return (
-      <Container>
-        <Switch>
-          <Route exact path="/">
-            <Search query={this.state.query} updateQuery={this.updateQuery} />
-          </Route>
-          <Route component={NotFound} />
-        </Switch>
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <Switch>
+        <Route exact path="/">
+          <Search query={query} setQuery={setQuery} parks={parks} />
+        </Route>
+        <Route component={NotFound} />
+      </Switch>
+    </Container>
+  );
 }
 
 export default App;

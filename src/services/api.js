@@ -2,14 +2,12 @@ import axios from "axios";
 
 const apiKey = "YcsxZITUsrmvJrwspQJ2dg9Z0pro5vM1Vf2DW33V";
 
-const axiosInstance = axios.create({
-  baseURL: "developer.nps.gov/api/v1"
-});
+const baseURL = "https://developer.nps.gov/api/v1";
 
 async function getParks(query) {
   try {
-    const response = await axiosInstance.get(`/activities/parks?q=${query}&api_key=${apiKey}`);
-    console.log(response);
+    const response = await axios.get(`${baseURL}/activities/parks?q=${query}&api_key=${apiKey}`);
+    return response.data.data[0].parks;
   } catch (err) {
     throw err;
   }
