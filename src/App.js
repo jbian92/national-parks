@@ -4,13 +4,14 @@ import Container from "@material-ui/core/Container";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
 import Info from "./pages/Info";
+import Home from "./pages/Home";
+import Activities from "./pages/Activities";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "",
-      parks: []
+      query: ""
     };
   }
 
@@ -25,6 +26,12 @@ class App extends Component {
       <Container>
         <Switch>
           <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/activities">
+            <Activities />
+          </Route>
+          <Route exact path="/search">
             <Search query={this.state.query} updateQuery={this.updateQuery} />
           </Route>
           <Route path="/:code">

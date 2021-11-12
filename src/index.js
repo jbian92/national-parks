@@ -5,7 +5,8 @@ import createTheme from "@material-ui/core/styles/createTheme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const theme = responsiveFontSizes(createTheme());
 

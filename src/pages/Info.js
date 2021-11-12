@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as API from "../services/api";
 import { Box, Button, Text } from "@chakra-ui/react";
 

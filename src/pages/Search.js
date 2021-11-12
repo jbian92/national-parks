@@ -20,13 +20,19 @@ class Search extends Component {
   };
 
   updateParks = (query) => {
-    API.getParks(query)
-      .then((parks) => {
-        this.setState({
-          parks: parks
-        })
+    if (query.trim() === "") {
+      this.setState({
+        parks: []
       })
-      .catch((err) => console.log(err));
+    } else {
+      // API.getParks(query)
+      //   .then((parks) => {
+      //     this.setState({
+      //       parks: parks
+      //     })
+      //   })
+      //   .catch((err) => console.log(err));
+    }
   };
 
   render() {

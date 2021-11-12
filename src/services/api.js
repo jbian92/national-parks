@@ -9,7 +9,7 @@ async function getParks(query) {
     if (query === "") {
       return [];
     }
-    const response = await axios.get(`${baseURL}/activities/parks?q=${query}&api_key=${apiKey}`);
+    const response = await axios.get(`${baseURL}/activities/parks?id=${query},&sort&api_key=${apiKey}`);
     if (response.data.total === "0") {
       return [];
     }
