@@ -4,8 +4,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { Grid, Box } from "@chakra-ui/react";
+import { Grid, Box, Text } from "@chakra-ui/react";
 import SearchItem from "../components/SearchItem";
+import Header from "../components/Header";
 import * as API from "../services/api";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +26,7 @@ function Activities() {
 
   const handleChange = (event) => {
     setActivity(event.target.value);
-    API.getParks(event.target.value)
+    API.getParksByActivity(event.target.value)
       .then((parks) => {
         setParks(parks)
       })
@@ -43,6 +44,8 @@ function Activities() {
       p={5}
       marginTop={5}
     >
+      <Header />
+      <Text marginTop={10} marginBottom={5} fontSize="3xl">Select an activity from the dropdown list to get the national parks related to that activity.</Text>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Activity</InputLabel>
         <Select
