@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router";
 import Container from "@material-ui/core/Container";
-import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
 import Info from "./pages/Info";
 import Home from "./pages/Home";
 import Activities from "./pages/Activities";
+import States from "./pages/States";
+import Webcams from "./pages/Webcams";
 
 class App extends Component {
   constructor(props) {
@@ -31,8 +32,11 @@ class App extends Component {
           <Route exact path="/activities">
             <Activities />
           </Route>
-          <Route exact path="/search">
-            <Search query={this.state.query} updateQuery={this.updateQuery} />
+          <Route exact path="/states">
+            <States />
+          </Route>
+          <Route path="/webcams/:code">
+            <Webcams />
           </Route>
           <Route path="/:code">
             <Info />

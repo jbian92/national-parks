@@ -10,7 +10,7 @@ function Header() {
       <Nav className="me-auto">
         <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="/activities">Activities</Nav.Link>
-        <Nav.Link href="/search">Search</Nav.Link>
+        <Nav.Link href="/states">States</Nav.Link>
       </Nav>
       </Container>
     </Navbar>

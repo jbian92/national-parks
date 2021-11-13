@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import * as API from "../services/api";
 import { Box, Button, Text, Image, Grid } from "@chakra-ui/react";
 import Header from "../components/Header";
@@ -26,7 +26,7 @@ function Info() {
       .catch((err) => console.log(err));
   }, []);
 
-  const buttonOnClick = () => {
+  const moreOnClick = () => {
     window.location = info.url;
   };
 
@@ -50,19 +50,21 @@ function Info() {
         src={img}
         alt={info.fullName}
       />
-      <Box mb="10">
+      <Box m="10">
         <Text fontSize="xl">{info.description}</Text>
       </Box>
-      <Box m="3" align={"left"}>
+      <Link to={`/webcams/${code}`}>
+        <Button colorScheme="teal" variant="outline">View Webcams</Button>
+      </Link>
+      <Box m="10" align={"left"}>
         <Text fontSize="2xl">Directions:</Text>
         <Text fontSize="xl">{info.directionsInfo}</Text>
       </Box>
-      <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={5} py={3}>
-        <Box m="3">
-          <Text fontSize="2xl">Entrance Fees:</Text>
-          <Text fontSize="xl">${fees.cost}</Text>
+      <Box m="10" align={"left"}>
+          <Text fontSize="2xl">Entrance Fees: ${fees.cost}</Text>
           <Text fontSize="xl">{fees.description}</Text>
         </Box>
+      <Grid templateColumns="repeat(2, 1fr)" gap={6} mb={5} py={3}>
         <Box m="3">
           <Text fontSize="2xl">Contact:</Text>
           <Text fontSize="xl">Phone: {number}</Text>
@@ -70,12 +72,12 @@ function Info() {
         </Box>
         <Box m="3">
           <Text fontSize="2xl">Address:</Text>
+          <Text fontSize="xl">{address.line1}</Text>
           <Text fontSize="xl">{address.line2}</Text>
           <Text fontSize="xl">{address.city}, {address.stateCode} {address.postalCode}</Text>
         </Box>
       </Grid>
-      
-      <Button onClick={() => buttonOnClick()} colorScheme="teal" variant="outline">More Info</Button>
+      <Button onClick={() => moreOnClick()} colorScheme="teal" variant="outline">More Info</Button>
     </Box>
   );
 }

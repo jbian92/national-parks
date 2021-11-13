@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import SearchBar from "material-ui-search-bar";
-import { Grid, Box } from "@chakra-ui/react";
+import { Grid, Box, Text } from "@chakra-ui/react";
 import SearchItem from "../components/SearchItem";
-import PropTypes from "prop-types";
+import Header from "../components/Header";
 import * as API from "../services/api";
 
-
-class Search extends Component {
+class States extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parks: []
+      parks: [],
+      query: ""
     };
   }
 
   updateQuery = (newValue) => {
-    this.props.updateQuery(newValue);
+    this.setState({
+      query: newValue
+    });
     this.updateParks(newValue);
   };
 
@@ -25,22 +27,32 @@ class Search extends Component {
         parks: []
       })
     } else {
-      // API.getParks(query)
-      //   .then((parks) => {
-      //     this.setState({
-      //       parks: parks
-      //     })
-      //   })
-      //   .catch((err) => console.log(err));
+      API.getParksByState(query)
+        .then((parks) => {
+          this.setState({
+            parks: parks
+          })
+        })
+        .catch((err) => console.log(err));
     }
   };
 
   render() {
     return (
-      <>
+      <Box
+        borderWidth="2px"
+        borderRadius="lg"
+        overflow="hidden"
+        align={"center"}
+        p={5}
+        my={4}
+      >
+        <Header />
+        <Text m="3" fontSize="4xl">Search for parks by state code!</Text>
+        <Text fontSize="2xl">For example, to search for parks in New Jersey, input "NJ".</Text>
         <Box p={3}>
           <SearchBar
-            value={this.props.query}
+            value={this.state.query}
             onChange={(newValue) => this.updateParks(newValue)}
             onCancelSearch={() => this.updateQuery("")}
           />
@@ -56,14 +68,9 @@ class Search extends Component {
             ))}
           </Grid>
         </Grid>
-      </>
+      </Box>
     );
   } 
 }
 
-export default Search;
-
-Search.propTypes = {
-  query: PropTypes.string.isRequired,
-  updateQuery: PropTypes.func.isRequired
-};
+export default States;

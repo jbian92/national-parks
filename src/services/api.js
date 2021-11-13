@@ -24,11 +24,11 @@ async function getParksByState(query) {
     if (query === "") {
       return [];
     }
-    const response = await axios.get(`${baseURL}/activities/parks?id=${query},&sort&api_key=${apiKey}`);
+    const response = await axios.get(`${baseURL}/parks?stateCode=${query}&stateCode=&api_key=${apiKey}`);
     if (response.data.total === "0") {
       return [];
     }
-    return response.data.data[0].parks;
+    return response.data.data;
   } catch (err) {
     throw err;
   }
@@ -43,4 +43,13 @@ async function getParkInfo(code) {
   }
 }
 
-export { getParksByActivity, getParksByState, getParkInfo };
+async function getWebCam(code) {
+  try {
+    const response = await axios.get(`${baseURL}/webcams?parkCode=${code}&api_key=${apiKey}`);
+    return response;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export { getParksByActivity, getParksByState, getParkInfo, getWebCam };
