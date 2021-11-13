@@ -12,6 +12,8 @@ function Info() {
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState({});
+  const [hours, setHours] = useState({});
+  const [stdHours, setStdHours] = useState({});
 
   useEffect(() => {
     API.getParkInfo(code)
@@ -22,6 +24,8 @@ function Info() {
         setNumber(info.data.data[0].contacts.phoneNumbers[0].phoneNumber);
         setEmail(info.data.data[0].contacts.emailAddresses[0].emailAddress);
         setAddress(info.data.data[0].addresses[0]);
+        setHours(info.data.data[0].operatingHours[0]);
+        setStdHours(info.data.data[0].operatingHours[0].standardHours);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -61,9 +65,23 @@ function Info() {
         <Text fontSize="xl">{info.directionsInfo}</Text>
       </Box>
       <Box m="10" align={"left"}>
-          <Text fontSize="2xl">Entrance Fees: ${fees.cost}</Text>
-          <Text fontSize="xl">{fees.description}</Text>
-        </Box>
+        <Text fontSize="2xl">Entrance Fees: ${fees.cost}</Text>
+        <Text fontSize="xl">{fees.description}</Text>
+      </Box>
+      <Box m="10" align={"left"}>
+        <Text fontSize="2xl">Operating Hours:</Text>
+        <Text fontSize="xl">{hours.description}</Text>
+      </Box>
+      <Box m="10" align={"left"}>
+        <Text fontSize="2xl">Standard Hours:</Text>
+        <Text fontSize="xl">Sunday: {stdHours.sunday}</Text>
+        <Text fontSize="xl">Monday: {stdHours.monday}</Text>
+        <Text fontSize="xl">Tuesday: {stdHours.tuesday}</Text>
+        <Text fontSize="xl">Wednesday: {stdHours.wednesday}</Text>
+        <Text fontSize="xl">Thursday: {stdHours.thursday}</Text>
+        <Text fontSize="xl">Friday: {stdHours.friday}</Text>
+        <Text fontSize="xl">Saturday: {stdHours.saturday}</Text>
+      </Box>
       <Grid templateColumns="repeat(2, 1fr)" gap={6} mb={5} py={3}>
         <Box m="3">
           <Text fontSize="2xl">Contact:</Text>
