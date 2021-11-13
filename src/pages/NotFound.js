@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import { Text, Button } from "@chakra-ui/react";
 
 function NotFound() {
   return (
@@ -10,9 +11,10 @@ function NotFound() {
       alignItems="center"
       style={{ minHeight: '100vh' }}
     >
-      <div>404 - Not Found!<br/>
+      <div>
+        <Text fontSize="4xl">404 - Not Found!</Text><br/>
         <Link to="/">
-          Go Home
+        <Button colorScheme="teal" variant="outline">Go back to home</Button>
         </Link>
       </div>
     </Grid>

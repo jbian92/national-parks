@@ -19,7 +19,7 @@ function SearchItem(props) {
         </Text>
       </Box>
       <Box m="2">
-        <Link to={`/${park.parkCode}`}>
+        <Link to={`/info/${park.parkCode}`}>
           <Button colorScheme="teal" variant="outline">More Info</Button>
         </Link>
       </Box>
