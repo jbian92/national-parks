@@ -6,7 +6,7 @@ Using the National Park Service API, this web app allows users to find informati
 
 ## Features
 - Select from a list of activities to do at different National Parks and get the related parks
-- Search for all National Parks by state
+- Search for National Parks by state
 - Click an activity and have the web app display all the National Parks tied to a specific activity
 - View an informational page after selecting a specific park
 - Look at non-streaming images collected from park web cams
